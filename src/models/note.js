@@ -18,18 +18,6 @@ const noteSchema = new Schema(
       type: String,
       default: 'Todo',
       enum: TAGS,
-      //   [
-      //   'Work',
-      //   'Personal',
-      //   'Meeting',
-      //   'Shopping',
-      //   'Ideas',
-      //   'Travel',
-      //   'Finance',
-      //   'Health',
-      //   'Important',
-      //   'Todo',
-      // ],
     },
   },
   {
@@ -37,5 +25,7 @@ const noteSchema = new Schema(
     versionKey: false,
   },
 );
+
+noteSchema.index({ title: 'text', content: 'text' });
 
 export const Note = model('Note', noteSchema);
