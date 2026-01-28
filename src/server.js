@@ -7,6 +7,7 @@ import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import authRoutes from './routes/authRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
 
 const app = express();
@@ -17,11 +18,11 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json({ limit: '5mb' }));
 
+app.use(authRoutes);
 app.use(notesRoutes);
 
 app.use(notFoundHandler);
 
-// обробка помилок від celebrate (валідація)
 app.use(errors());
 
 app.use(errorHandler);
