@@ -1,4 +1,5 @@
 import createHttpError from 'http-errors';
+import bcrypt from 'bcrypt';
 import { User } from '../models/user.js';
 
 export const registerUser = async (req, res) => {
@@ -8,6 +9,8 @@ export const registerUser = async (req, res) => {
   if (existingUser) {
     throw createHttpError(400, 'Email in use');
   }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   res.status(201).json({});
 };
