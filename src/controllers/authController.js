@@ -25,12 +25,12 @@ export const loginUser = async (req, res) => {
 
   const user = await User.findOne({ email });
   if (!user) {
-    throw createHttpError(400, 'Email in use');
+    throw createHttpError(401, 'Invalid credentials');
   }
 
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) {
-    throw createHttpError(400, 'Email in use');
+    throw createHttpError(401, 'Invalid credentials');
   }
 
   res.status(200).json(user);
