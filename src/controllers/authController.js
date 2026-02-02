@@ -104,7 +104,7 @@ export const requestResetEmail = async (req, res) => {
 
   if (!user) {
     return res.status(200).json({
-      message: 'If this email exists, a reset link has been sent',
+      message: 'Password reset email sent successfully',
     });
   }
 
@@ -137,6 +137,6 @@ export const requestResetEmail = async (req, res) => {
   }
 
   res.status(200).json({
-    message: 'If this email exists, a reset link has been sent',
+    message: 'Password reset email sent successfully',
   });
 };
